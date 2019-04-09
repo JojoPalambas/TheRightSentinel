@@ -8,6 +8,7 @@ public class JoystickRegisterer : MonoBehaviour
     public RealInput inputs;
     public GameObject mask;
     public Vector2 playerCoordinates;
+    public PlayerInfoDisplayer playerInfoDisplayer;
 
     public SelectButton weaponSelect;
     public SelectButton abilitySelect;
@@ -32,5 +33,20 @@ public class JoystickRegisterer : MonoBehaviour
     {
         inputs = new RealInput();
         mask.SetActive(true);
+    }
+
+    public void disablePlayerInfoDisplayerIfUnused()
+    {
+        Debug.Log(inputs.joystickId);
+        if (inputs.joystickId == 0)
+        {
+            Debug.Log("disabling");
+            playerInfoDisplayer.gameObject.SetActive(false);
+        }
+    }
+
+    public void enablePlayerInfoDisplayer()
+    {
+        playerInfoDisplayer.gameObject.SetActive(true);
     }
 }

@@ -146,12 +146,23 @@ public class GameManager : MonoBehaviour
         {
             Destroy(player);
         }
+
+        foreach (PlayerInfoDisplayer playerInfoDisplayer in playerInfoDisplayers)
+        {
+            playerInfoDisplayer.enabled = true;
+        }
     }
     
     private void NextRound(bool newGame)
     {
         if (newGame)
             ResetScores();
+
+        foreach (JoystickRegisterer registerer in selectMenu.playerRegisterers)
+        {
+            Debug.Log(registerer.inputs.joystickId);
+            registerer.disablePlayerInfoDisplayerIfUnused();
+        }
 
         players = new List<GameObject>();
         citizens = new List<GameObject>();
