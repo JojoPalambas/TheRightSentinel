@@ -88,10 +88,24 @@ public class MachineGun : MonoBehaviour
             Sentinel target = hitInfo.transform.GetComponent<Sentinel>();
             if (target != null)
                 target.Hurt(owner.gameObject, GameConstants.machineGunDamage);
+
+            if (bulletLine != null)
+            {
+                BulletLine bl = Instantiate(bulletLine, new Vector3(), new Quaternion()).GetComponent<BulletLine>();
+                bl.startPosition = transform.position;
+                bl.endPosition = hitInfo.point;
+            }
         }
         else
         {
             Instantiate(bulletMiss, transform.position + shotDirection.normalized * range, transform.rotation);
+
+            if (bulletLine != null)
+            {
+                BulletLine bl = Instantiate(bulletLine, new Vector3(), new Quaternion()).GetComponent<BulletLine>();
+                bl.startPosition = transform.position;
+                bl.endPosition = transform.position + shotDirection.normalized * range;
+            }
         }
 
         GeneralLinker.cameraManager.Shake(GameConstants.machineGunShake);

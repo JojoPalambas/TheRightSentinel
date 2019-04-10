@@ -160,7 +160,6 @@ public class GameManager : MonoBehaviour
 
         foreach (JoystickRegisterer registerer in selectMenu.playerRegisterers)
         {
-            Debug.Log(registerer.inputs.joystickId);
             registerer.disablePlayerInfoDisplayerIfUnused();
         }
 

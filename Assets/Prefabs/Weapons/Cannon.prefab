@@ -68,4 +68,6 @@ MonoBehaviour:
     type: 3}
   bulletMiss: {fileID: 7290973822005601165, guid: 4fece6a88c4756e428058d231815617d,
     type: 3}
+  bulletLine: {fileID: 6516051844487875412, guid: dc9d633cd591c014382b34174b7f6891,
+    type: 3}
   owner: {fileID: 0}

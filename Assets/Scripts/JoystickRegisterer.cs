@@ -37,10 +37,8 @@ public class JoystickRegisterer : MonoBehaviour
 
     public void disablePlayerInfoDisplayerIfUnused()
     {
-        Debug.Log(inputs.joystickId);
         if (inputs.joystickId == 0)
         {
-            Debug.Log("disabling");
             playerInfoDisplayer.gameObject.SetActive(false);
         }
     }

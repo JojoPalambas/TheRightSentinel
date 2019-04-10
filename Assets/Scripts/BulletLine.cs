@@ -25,7 +25,7 @@ public class BulletLine : MonoBehaviour
     {
         // Decreasing the alpha
         float newAlpha = lineRenderer.startColor.a - (Time.deltaTime * startAlpha / disappearingTime);
-        if (newAlpha < 0)
+        if (newAlpha <= 0)
             Destroy(gameObject);
         Color newColor = new Color(lineRenderer.startColor.r, lineRenderer.startColor.g, lineRenderer.startColor.b, newAlpha);
         lineRenderer.startColor = newColor;
