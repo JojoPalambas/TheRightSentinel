@@ -55,6 +55,11 @@ public abstract class GameConstants
 
     public static readonly float smokeCooldown = 15f;
 
+    // AI
+
+    public static readonly float minTimeForAIDecision = 0f;
+    public static readonly float maxTimeForAIDecision = 3f;
+
     // General
 
     public static readonly float disabledGunsTime = 5f;
