@@ -36,12 +36,12 @@ public class CitizenIdle : MonoBehaviour
 
     private void TakeDecision()
     {
-        decisionCooldown = Random.value * 2 + 0.5f;
+        decisionCooldown = Random.value * 3;
 
-        horizontalMove = (Random.value * 3) - 1;
-        verticalMove = (Random.value * 3) - 1;
-        horizontalTurret = (Random.value * 3) - 1;
-        verticalTurret = (Random.value * 3) - 1;
+        horizontalMove = (Random.value * 3) - 1.5f;
+        verticalMove = (Random.value * 3) - 1.5f;
+        horizontalTurret = (Random.value * 3) - 1.5f;
+        verticalTurret = (Random.value * 3) - 1.5f;
 
         if (apocalypseMode)
         {
