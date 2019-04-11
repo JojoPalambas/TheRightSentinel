@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool hpEnabled = true;
     public bool hpColorationEnabled = true;
     public bool hpRegenEnabled = true;
+    public bool aiSync = false;
 
     private ProgramStatus programStatus = ProgramStatus.mainMenu;
 
@@ -172,6 +173,7 @@ public class GameManager : MonoBehaviour
         hpEnabled = selectMenu.hpToggle.isOn;
         hpColorationEnabled = selectMenu.hpColorationToggle.isOn;
         hpRegenEnabled = selectMenu.hpRegenToggle.isOn;
+        aiSync = selectMenu.aiSyncToggle.isOn;
     }
 
     private void InstantiatePlayers()

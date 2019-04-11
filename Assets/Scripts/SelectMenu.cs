@@ -45,6 +45,7 @@ public class SelectMenu : MonoBehaviour
     public Toggle hpToggle;
     public Toggle hpColorationToggle;
     public Toggle hpRegenToggle;
+    public Toggle aiSyncToggle;
 
     // Start is called before the first frame update
     void Start()

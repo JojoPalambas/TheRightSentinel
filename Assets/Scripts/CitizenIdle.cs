@@ -36,7 +36,10 @@ public class CitizenIdle : MonoBehaviour
 
     private void TakeDecision()
     {
-        decisionCooldown = Random.value * GameConstants.maxTimeForAIDecision + GameConstants.minTimeForAIDecision;
+        if (sentinel.gameManager.aiSync)
+            decisionCooldown = GameConstants.syncTimeForAIDecision;
+        else
+            decisionCooldown = Random.value * GameConstants.maxTimeForAIDecision + GameConstants.minTimeForAIDecision;
 
         horizontalMove = (Random.value * 3) - 1.5f;
         verticalMove = (Random.value * 3) - 1.5f;
