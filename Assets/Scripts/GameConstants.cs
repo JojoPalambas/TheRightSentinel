@@ -18,12 +18,12 @@ public abstract class GameConstants
     public static readonly int machineGunReloadBullets = 3;
     public static readonly float machineGunMinRange = 15f;
     public static readonly float machineGunMaxRange = 16f;
-    public static readonly float machineGunAccuracy = .97f;
+    public static readonly float machineGunAccuracy = .985f;
     public static readonly float machineGunShake = .25f;
     public static readonly int machineGunDamage = 20;
 
     public static readonly float shotgunCoolDown = 1f;
-    public static readonly int shotgunBullets = 10;
+    public static readonly int shotgunBullets = 9;
     public static readonly float shotgunMinRange = 9f;
     public static readonly float shotgunMaxRange = 11f;
     public static readonly float shotgunAccuracy = .95f;
