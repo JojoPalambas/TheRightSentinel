@@ -47,6 +47,12 @@ public class Laser : MonoBehaviour
             return;
         }
 
+        // If no sound is playing, play sound
+        if (!GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+
         RaycastHit hitInfo;
         float range = GameConstants.laserRange;
         // If hits anything
@@ -88,6 +94,12 @@ public class Laser : MonoBehaviour
     public void Stop()
     {
         SetLaserEnd(transform.position, false);
+        
+        // If sound is playing, stop sound
+        if (GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
     }
 
     public void SetGauge(Gauge gauge)

@@ -39,6 +39,9 @@ public class Rocket : MonoBehaviour
         lightEmitter.intensity = 0;
         rocketCollider.enabled = false;
 
+        // Stopping thruster sound
+        GetComponent<AudioSource>().Stop();
+
         if (explosion)
             Instantiate(explosion, transform.position, explosion.transform.rotation);
         GeneralLinker.cameraManager.Shake(GameConstants.rocketShake);

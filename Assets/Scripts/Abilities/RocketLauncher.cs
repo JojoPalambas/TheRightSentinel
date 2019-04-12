@@ -40,6 +40,8 @@ public class RocketLauncher : MonoBehaviour
 
         GameObject newRocketObject = Instantiate(rocket, owner.turret.transform.position + owner.turret.transform.forward, owner.turret.transform.rotation);
         newRocketObject.GetComponent<Rocket>().owner = owner;
+
+        GetComponent<AudioSource>().Play();
     }
 
     public void SetGauge(Gauge gauge)
