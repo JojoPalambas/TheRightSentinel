@@ -27,12 +27,16 @@ public class JoystickRegisterer : MonoBehaviour
     {
         inputs = realInput;;
         mask.SetActive(false);
+
+        FindObjectOfType<AudioManager>().Play("sound:PlayerRegister");
     }
 
     public void Unregister()
     {
         inputs = new RealInput();
         mask.SetActive(true);
+
+        FindObjectOfType<AudioManager>().Play("sound:PlayerUnregister");
     }
 
     public void disablePlayerInfoDisplayerIfUnused()

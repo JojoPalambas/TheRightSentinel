@@ -278,11 +278,15 @@ public class GameManager : MonoBehaviour
         {
             players.Remove(victim);
             score = GameConstants.playerValue;
+
+            FindObjectOfType<AudioManager>().Play("sound:PlayerDeath");
         }
         else
         {
             citizens.Remove(victim);
             score = GameConstants.citizenValue;
+
+            FindObjectOfType<AudioManager>().Play("sound:AIDeath");
         }
 
         // Giving points to the killer ; if suicide is committed, no point granted
