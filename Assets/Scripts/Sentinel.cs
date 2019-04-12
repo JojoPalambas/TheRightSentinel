@@ -92,6 +92,10 @@ public class Sentinel : MonoBehaviour
 
     public void Hurt(GameObject killer, float damage)
     {
+        // If already dead at the same frame
+        if (hp <= 0)
+            return;
+
         if (gameManager.hpEnabled)
         {
             hp -= damage;
