@@ -74,7 +74,6 @@ public class MachineGun : MonoBehaviour
         this.shooter = shooter;
 
         bullets--;
-        Debug.Log(bullets);
         coolDown = GameConstants.machineGunCoolDown;
         maxCooldown = GameConstants.machineGunCoolDown;
 

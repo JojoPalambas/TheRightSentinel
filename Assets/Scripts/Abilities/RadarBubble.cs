@@ -29,6 +29,13 @@ public class RadarBubble : MonoBehaviour
         if (particleShape.radius > GameConstants.radarBubbleMaxRadius)
             Destroy(gameObject);
         particleEmission.rateOverTime = particleShape.radius * particleShape.radius * GameConstants.radarBubbleParticlesIntensity;
+
+        // If the bubble approaches its end, fades the sound effect out
+        if (particleShape.radius > GameConstants.radarBubbleMaxRadius * .75f)
+        {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.volume -= audioSource.volume / 10;
+        }
     }
 
     public void setRadarZoneOwner(Sentinel owner)
