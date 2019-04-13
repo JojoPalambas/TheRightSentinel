@@ -6,9 +6,7 @@ public class MachineGun : MonoBehaviour
 {
     private float maxCooldown = GameConstants.disabledGunsTime;
     private float coolDown = GameConstants.disabledGunsTime;
-    private float reloadingTime;
     private int bullets;
-    private bool firing;
 
     private Sentinel shooter;
 
@@ -20,60 +18,71 @@ public class MachineGun : MonoBehaviour
     public Sentinel owner;
 
     private Gauge gauge;
+    private bool displayCoolDown;
 
     // Start is called before the first frame update
     void Start()
     {
+        maxCooldown = GameConstants.disabledGunsTime;
         coolDown = GameConstants.disabledGunsTime;
-        reloadingTime = 0f;
+
         bullets = GameConstants.machineGunReloadBullets;
-        firing = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         coolDown -= Time.deltaTime;
-        reloadingTime -= Time.deltaTime;
-
-        if (firing)
-        {
-            ActuallyShoot(shooter);
-        }
-
         if (gauge != null)
+            gauge.SetCurrentValue(coolDown);
+
+        if (coolDown <= 0f)
         {
-            gauge.SetCurrentValue(reloadingTime);
-            gauge.SetMaxValue(maxCooldown);
+            if (bullets <= 0)
+            {
+                bullets = 3;
+                coolDown = GameConstants.machineGunReloadingDuration;
+
+                if (gauge != null)
+                {
+                    gauge.SetCurrentValue(coolDown);
+                    gauge.SetMaxValue(coolDown);
+                }
+            }
+            else if (bullets == GameConstants.machineGunReloadBullets)
+            {
+                // Do nothing, wait for shoot
+            }
+            else
+            {
+                Fire(shooter);
+            }
         }
     }
 
     public void Shoot(Sentinel shooter)
     {
-        this.shooter = shooter;
-        if (coolDown <= 0f && reloadingTime <= 0)
+        // If the rafale is at its beginning, starts a new rafale
+        if (bullets >= GameConstants.machineGunReloadBullets & coolDown <= 0f)
         {
-            firing = true;
+            Fire(shooter);
         }
     }
 
-    public void ActuallyShoot(Sentinel shooter)
+    public void Fire(Sentinel shooter)
     {
         this.shooter = shooter;
-        if (bullets <= 0)
-        {
-            firing = false;
-            bullets = GameConstants.machineGunReloadBullets;
-            reloadingTime = GameConstants.machineGunReloadingDuration;
-            maxCooldown = GameConstants.machineGunReloadingDuration;
-        }
-        if (coolDown > 0)
-        {
-            return;
-        }
 
+        bullets--;
+        Debug.Log(bullets);
         coolDown = GameConstants.machineGunCoolDown;
-        bullets -= 1;
+        maxCooldown = GameConstants.machineGunCoolDown;
+
+        if (gauge != null)
+        {
+            gauge.SetCurrentValue(GameConstants.machineGunCoolDown);
+            gauge.SetMaxValue(GameConstants.machineGunCoolDown);
+        }
 
         Instantiate(muzleFlare, transform);
 
@@ -114,5 +123,7 @@ public class MachineGun : MonoBehaviour
     public void SetGauge(Gauge gauge)
     {
         this.gauge = gauge;
+        gauge.SetCurrentValue(coolDown);
+        gauge.SetMaxValue(coolDown);
     }
 }
