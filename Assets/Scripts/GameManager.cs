@@ -55,10 +55,14 @@ public class GameManager : MonoBehaviour
             {
                 Quit();
             }
+            else if (programStatus == ProgramStatus.selectMenu)
+            {
+                SetProgramStatus(ProgramStatus.mainMenu);
+            }
             else
             {
                 CleanRound();
-                SetProgramStatus(ProgramStatus.mainMenu);
+                SetProgramStatus(ProgramStatus.selectMenu);
             }
             return;
         }
