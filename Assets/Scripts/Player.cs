@@ -21,6 +21,15 @@ public class Player : MonoBehaviour
         sentinel.Move(Input.GetAxis(input.horizontal), Input.GetAxis(input.vertical));
         sentinel.RotateTurret(Input.GetAxis(input.turretHorizontal), Input.GetAxis(input.turretVertical));
 
+        if (Input.GetAxisRaw(input.fire) != 0)
+            sentinel.Shoot();
+        else
+            sentinel.StopShooting();
+
+        if (Input.GetAxisRaw(input.ability) != 0)
+            sentinel.UseAbility();
+
+        /*
         if (Input.GetAxis(input.fire) != 0f)
             sentinel.Shoot();
         else
@@ -28,6 +37,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetAxis(input.ability) != 0f)
             sentinel.UseAbility();
+        */
     }
 
     public void SetPlayerInfoDisplayer(PlayerInfoDisplayer pid)

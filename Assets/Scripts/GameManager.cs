@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    enum ProgramStatus
+    public enum ProgramStatus
     {
         mainMenu,
         selectMenu,
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetProgramStatus(ProgramStatus.selectMenu);
+        SetProgramStatus(ProgramStatus.mainMenu);
         foreach (string joystick in Input.GetJoystickNames())
         {
             Debug.Log(joystick);
@@ -51,14 +51,14 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-            if (programStatus == ProgramStatus.selectMenu)
+            if (programStatus == ProgramStatus.mainMenu)
             {
-                Application.Quit();
+                Quit();
             }
             else
             {
                 CleanRound();
-                SetProgramStatus(ProgramStatus.selectMenu);
+                SetProgramStatus(ProgramStatus.mainMenu);
             }
             return;
         }
@@ -84,7 +84,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SetProgramStatus(ProgramStatus ps)
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void SetProgramStatus(ProgramStatus ps)
     {
         programStatus = ps;
         if (ps == ProgramStatus.mainMenu)
@@ -110,6 +115,11 @@ public class GameManager : MonoBehaviour
     public void Play()
     {
         SetProgramStatus(ProgramStatus.game);
+    }
+
+    public void SelectMenu()
+    {
+        SetProgramStatus(ProgramStatus.selectMenu);
     }
 
     private void EndRound()
