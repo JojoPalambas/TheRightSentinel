@@ -126,6 +126,11 @@ public class GameManager : MonoBehaviour
         SetProgramStatus(ProgramStatus.selectMenu);
     }
 
+    public void MainMenu()
+    {
+        SetProgramStatus(ProgramStatus.mainMenu);
+    }
+
     private void EndRound()
     {
         // Cleaning
